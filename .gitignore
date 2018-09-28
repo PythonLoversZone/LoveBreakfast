@@ -102,5 +102,3 @@ ENV/
 # idea 
 LoveBreakfast/.idea/
 # config
-LoveBreakfast/config/dbconfig.py
-LoveBreakfast/config/Inforcode.py
