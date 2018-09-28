@@ -1,21 +1,25 @@
 # *- coding:utf8 *-
-import sys
-import os
-sys.path.append(os.path.dirname(os.getcwd()))
-from flask import request
-import uuid
 import json
-from LoveBreakfast.services.SProduct import SProduct
-from LoveBreakfast.common.get_str import get_str
-from LoveBreakfast.common.import_status import import_status
-from LoveBreakfast.services.SReview import SReview
-from LoveBreakfast.control.COrders import COrders
-from LoveBreakfast.services.SUsers import SUsers
-from LoveBreakfast.services.SOrders import SOrders
-from LoveBreakfast.config.response import PARAMS_MISS, SYSTEM_ERROR
+import os
+import sys
+import uuid
+
+from flask import request
+
+from LoveBreakfast.common.MakeToken import token_to_usid
 from LoveBreakfast.common.TransformToList import add_model
 from LoveBreakfast.common.get_model_return_list import get_model_return_dict, get_model_return_list
-from LoveBreakfast.common.MakeToken import token_to_usid
+from LoveBreakfast.common.get_str import get_str
+from LoveBreakfast.common.import_status import import_status
+from LoveBreakfast.config.response import PARAMS_MISS, SYSTEM_ERROR
+from LoveBreakfast.control.COrders import COrders
+from LoveBreakfast.services.SOrders import SOrders
+from LoveBreakfast.services.SProduct import SProduct
+from LoveBreakfast.services.SReview import SReview
+from LoveBreakfast.services.SUsers import SUsers
+
+sys.path.append(os.path.dirname(os.getcwd()))
+
 
 class CReview():
     def __init__(self):
@@ -82,7 +86,7 @@ class CReview():
             product_volue = self.service_product.get_product_volume_by_prid(PRid)
             product_score = self.service_product.get_product_score_by_prid(PRid)
 
-            score = (product_score * product_volue + REscore)/product_volue
+            score = (product_score * product_volue + REscore) / product_volue
             product = {
                 "PRscore": score
             }

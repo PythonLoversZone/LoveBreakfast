@@ -1,18 +1,22 @@
 # *- coding:utf8 *-
-import sys
 import os
-sys.path.append(os.path.dirname(os.getcwd()))
+import sys
+
 from flask_restful import Resource
+
 from LoveBreakfast.config.Logs import PRINT_API_NAME
-from LoveBreakfast.control.CProduct import CProduct
 from LoveBreakfast.config.response import APIS_WRONG
+from LoveBreakfast.control.CProduct import CProduct
+
+sys.path.append(os.path.dirname(os.getcwd()))
+
 
 class LBProduct(Resource):
     def __init__(self):
         self.control_product = CProduct()
 
-
-    def post(self, product):
+    @staticmethod
+    def post(product):
         print(PRINT_API_NAME.format(product))
 
         apis = {
@@ -27,7 +31,8 @@ class LBProduct(Resource):
 
         return APIS_WRONG
 
-    def get(self, product):
+    @staticmethod
+    def get(product):
         print(PRINT_API_NAME.format(product))
 
         apis = {

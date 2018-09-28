@@ -1,16 +1,21 @@
 # *- coding:utf8 *-
-import sys
 import os
-sys.path.append(os.path.dirname(os.getcwd()))
+import sys
+
 from flask_restful import Resource
+
 from LoveBreakfast.config.Logs import PRINT_API_NAME
 from LoveBreakfast.services.SCategory import SCategory
+
+sys.path.append(os.path.dirname(os.getcwd()))
+
 
 class LBCategory(Resource):
     def __init__(self):
         self.control_category = SCategory()
 
-    def post(self, category):
+    @staticmethod
+    def post(category):
         print(PRINT_API_NAME.format(category))
 
         apis = {
@@ -22,7 +27,8 @@ class LBCategory(Resource):
 
         return
 
-    def get(self, category):
+    @staticmethod
+    def get(category):
         print(PRINT_API_NAME.format(category))
 
         apis = {

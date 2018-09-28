@@ -1,16 +1,21 @@
 # *- coding:utf8 *-
-import sys
 import os
-sys.path.append(os.path.dirname(os.getcwd()))
+import sys
+
 from flask_restful import Resource
+
 from LoveBreakfast.config.Logs import PRINT_API_NAME
 from LoveBreakfast.control.CShop import CShop
+
+sys.path.append(os.path.dirname(os.getcwd()))
+
 
 class LBShop(Resource):
     def __init__(self):
         self.control_shop = CShop()
 
-    def post(self, shop):
+    @staticmethod
+    def post(shop):
         print(PRINT_API_NAME.format(shop))
 
         apis = {
@@ -22,7 +27,8 @@ class LBShop(Resource):
 
         return
 
-    def get(self, shop):
+    @staticmethod
+    def get(shop):
         print(PRINT_API_NAME.format(shop))
 
         apis = {

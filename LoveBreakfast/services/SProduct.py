@@ -1,10 +1,13 @@
 # *- coding:utf8 *-
 # 兼容linux系统
-import sys
 import os
-sys.path.append(os.path.dirname(os.getcwd()))
+import sys
+
 from LoveBreakfast.models.model import Products
 from LoveBreakfast.services.SBase import SBase, close_session
+
+sys.path.append(os.path.dirname(os.getcwd()))
+
 
 # 操作user表的相关方法
 class SProduct(SBase):
@@ -13,10 +16,10 @@ class SProduct(SBase):
     @close_session
     def get_all(self):
         return self.session.query(
-                Products.PRid, Products.PRname,
-                Products.PRprice, Products.PRimage,
-                Products.PRsalesvolume, Products.PRscore
-            ).filter_by(PRstatus=1).all()
+            Products.PRid, Products.PRname,
+            Products.PRprice, Products.PRimage,
+            Products.PRsalesvolume, Products.PRscore
+        ).filter_by(PRstatus=1).all()
 
     # 根据商品id获取商品详情
     @close_session

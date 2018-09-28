@@ -3,12 +3,13 @@
 import os
 import sys
 
-sys.path.append(os.path.dirname(os.getcwd()))
 from LoveBreakfast.models import model
 from LoveBreakfast.services import DBSession
 
+sys.path.append(os.path.dirname(os.getcwd()))
 
-class SCategory():
+
+class SCategory:
     def __init__(self):
         """
         self.session 数据库连接会话

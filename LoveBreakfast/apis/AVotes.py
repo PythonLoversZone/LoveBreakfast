@@ -1,21 +1,26 @@
 # *- coding:utf8 *-
-import sys
 import os
-sys.path.append(os.path.dirname(os.getcwd()))
+import sys
+
 from flask_restful import Resource
+
 from LoveBreakfast.config.Logs import PRINT_API_NAME
-from LoveBreakfast.control.CVotes import CVotes
 from LoveBreakfast.config.response import APIS_WRONG
+from LoveBreakfast.control.CVotes import CVotes
+
+sys.path.append(os.path.dirname(os.getcwd()))
+
 
 class LBVotes(Resource):
     def __init__(self):
         self.cvote = CVotes()
 
-    def post(self, votes):
+    @staticmethod
+    def post(votes):
         print(PRINT_API_NAME.format(votes))
 
         apis = {
-            "make_vote":"self.cvote.make_vote()"
+            "make_vote": "self.cvote.make_vote()"
         }
 
         if votes in apis:
@@ -23,7 +28,8 @@ class LBVotes(Resource):
 
         return APIS_WRONG
 
-    def get(self, votes):
+    @staticmethod
+    def get(votes):
         print(PRINT_API_NAME.format(votes))
 
         apis = {

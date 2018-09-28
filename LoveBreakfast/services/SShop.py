@@ -6,11 +6,12 @@ import sys
 # reload(sys)
 sys.setdefaultencoding('utf-8')
 
-sys.path.append(os.path.dirname(os.getcwd()))  # 增加系统路径
 # 引用项目类
 import LoveBreakfast.models.model as models
 from LoveBreakfast.services import DBSession
 from LoveBreakfast.common.TransformToList import trans_params
+
+sys.path.append(os.path.dirname(os.getcwd()))  # 增加系统路径
 
 
 # 操作user表的相关方法

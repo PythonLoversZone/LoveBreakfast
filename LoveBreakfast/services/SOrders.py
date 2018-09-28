@@ -1,10 +1,12 @@
 # *- coding:utf8 *-
-import sys
 import os
-sys.path.append(os.path.dirname(os.getcwd()))
+import sys
 import uuid
+
 from LoveBreakfast.models.model import Ordermain, Orderpart
 from LoveBreakfast.services.SBase import SBase, close_session
+
+sys.path.append(os.path.dirname(os.getcwd()))
 
 
 class SOrders(SBase):
@@ -68,9 +70,9 @@ class SOrders(SBase):
 
     @close_session
     def get_order_main_by_code(self, omcode):
-        return self.session.query(Ordermain.OMid, Ordermain.OMcode)\
+        return self.session.query(Ordermain.OMid, Ordermain.OMcode) \
             .filter(Ordermain.OMcode == omcode, Ordermain.OMstatus < 42).first()
-    
+
     @close_session
     def del_order(self, omid):
         self.session.query(Ordermain).filter(Ordermain.OMid == omid).delete()

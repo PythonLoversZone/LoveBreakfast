@@ -9,6 +9,4 @@ def get_str(args, key):
     :return: 一定是utf-8的value
     """
     name = args.get(key)
-    if isinstance(name, unicode):
-        name = name.encode("utf8")
     return name

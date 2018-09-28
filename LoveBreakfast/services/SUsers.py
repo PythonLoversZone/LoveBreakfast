@@ -1,11 +1,13 @@
 # *- coding:utf8 *-
-import sys
 import os
-sys.path.append(os.path.dirname(os.getcwd()))
+import sys
 import uuid
-from LoveBreakfast.models import model
+
 from LoveBreakfast.common.TransformToList import trans_params
+from LoveBreakfast.models import model
 from LoveBreakfast.services.SBase import SBase, close_session
+
+sys.path.append(os.path.dirname(os.getcwd()))
 
 
 class SUsers(SBase):
@@ -89,4 +91,3 @@ class SUsers(SBase):
     @close_session
     def get_uid_by_utel(self, utel):
         return self.session.query(model.Users.USid).filter_by(UStelphone=utel).scalar()
-

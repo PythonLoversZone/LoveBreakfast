@@ -1,10 +1,13 @@
 # *- coding:utf8 *-
-import sys
 import os
-sys.path.append(os.path.dirname(os.getcwd()))
+import sys
+
 from sqlalchemy import func
-from LoveBreakfast.models.model import Votes as VS, Vote as VO, Votenotes as VN, VoteChoice as VC, VoteResult as VR
+
+from LoveBreakfast.models.model import Votes as VS, Vote as VO, Votenotes as VN, VoteChoice as VC
 from LoveBreakfast.services.SBase import SBase, close_session
+
+sys.path.append(os.path.dirname(os.getcwd()))
 
 
 class SVotes(SBase):
@@ -52,8 +55,10 @@ class SVotes(SBase):
             VN.VNid, VN.VSid, VN.USid, VN.VNtime
         ).filter(VN.USid == usid, VN.VSid == vsid).scalar()
 
+
 if __name__ == "__main__":
     import uuid
+
     sv = SVotes()
     # sv.add_model("Votes", **{
     #     "VSid": str(uuid.uuid1()),

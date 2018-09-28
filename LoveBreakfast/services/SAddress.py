@@ -2,16 +2,17 @@
 import os
 import sys
 
-sys.path.append(os.path.dirname(os.getcwd()))
-from LoveBreakfast.services.SBase import SBase, close_session
 from LoveBreakfast.models.model import AddCity, AddressAbo, AddressFirst, AddressSecond
+from LoveBreakfast.services.SBase import SBase, close_session
+
+sys.path.append(os.path.dirname(os.getcwd()))
 
 
 class SAddress(SBase):
 
     @close_session
     def get_addfirst_by_acid_astype(self, acid, aftype):
-        return self.session.query(AddressFirst.ACid, AddressFirst.AFid, AddressFirst.AFname, AddressFirst.AFtype)\
+        return self.session.query(AddressFirst.ACid, AddressFirst.AFid, AddressFirst.AFname, AddressFirst.AFtype) \
             .filter(AddressFirst.ACid == acid, AddressFirst.AFtype == aftype).all()
 
     @close_session
@@ -24,7 +25,7 @@ class SAddress(SBase):
 
     @close_session
     def get_addabo_by_asid(self, asid):
-        return self.session.query(AddressAbo.AAid, AddressAbo.AAimage, AddressAbo.AAmessage)\
+        return self.session.query(AddressAbo.AAid, AddressAbo.AAimage, AddressAbo.AAmessage) \
             .filter(AddressAbo.ASid == asid).all()
 
     @close_session

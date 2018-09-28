@@ -7,9 +7,10 @@ path = os.getcwd()
 if len(args) > 1:
     path = args[1]  # /opt/LoveBreakfast
 print(path)
-sys.path.append(os.path.dirname(path))  # 增加系统路径
 from LoveBreakfast.common.TransformToList import add_model
 import uuid
+
+sys.path.append(os.path.dirname(path))  # 增加系统路径
 
 
 class MakeData:

@@ -1,17 +1,22 @@
 # *- coding:utf8 *-
-import sys
 import os
-sys.path.append(os.path.dirname(os.getcwd()))
+import sys
+
 from flask_restful import Resource
+
 from LoveBreakfast.config.Logs import PRINT_API_NAME
-from LoveBreakfast.control.CReview import CReview
 from LoveBreakfast.config.response import APIS_WRONG
+from LoveBreakfast.control.CReview import CReview
+
+sys.path.append(os.path.dirname(os.getcwd()))
+
 
 class LBReview(Resource):
     def __init__(self):
         self.control_review = CReview()
 
-    def post(self, review):
+    @staticmethod
+    def post(review):
         print(PRINT_API_NAME.format(review))
 
         apis = {
@@ -24,7 +29,8 @@ class LBReview(Resource):
 
         return APIS_WRONG
 
-    def get(self, review):
+    @staticmethod
+    def get(review):
         print(PRINT_API_NAME.format(review))
         apis = {
             "get_review": "self.control_review.get_review()",

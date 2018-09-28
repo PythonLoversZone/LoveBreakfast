@@ -1,17 +1,20 @@
 # *- coding:utf8 *-
-import sys
-import os
 import json
-sys.path.append(os.path.dirname(os.getcwd()))
+import os
+import sys
+
 from flask_restful import request
+
 from LoveBreakfast.common.get_model_return_list import get_model_return_dict, get_model_return_list
 from LoveBreakfast.common.get_str import get_str
 from LoveBreakfast.common.import_status import import_status
-from LoveBreakfast.config.response import PARAMS_MISS, SYSTEM_ERROR
 from LoveBreakfast.config.cityconfig import AFTYPE
+from LoveBreakfast.config.response import PARAMS_MISS, SYSTEM_ERROR
+
+sys.path.append(os.path.dirname(os.getcwd()))
 
 
-class CAddress():
+class CAddress:
     def __init__(self):
         self.title = "========={0}========="
         from LoveBreakfast.services.SAddress import SAddress

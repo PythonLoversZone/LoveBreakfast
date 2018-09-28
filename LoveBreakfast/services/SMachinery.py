@@ -1,9 +1,11 @@
 # *- coding:utf8 *-
-import sys
 import os
-sys.path.append(os.path.dirname(os.getcwd()))
-from LoveBreakfast.services.SBase import SBase, close_session
+import sys
+
 from LoveBreakfast.models.model import Machinery
+from LoveBreakfast.services.SBase import SBase, close_session
+
+sys.path.append(os.path.dirname(os.getcwd()))
 
 
 class SMachinery(SBase):
@@ -23,6 +25,6 @@ class SMachinery(SBase):
 if __name__ == "__main__":
     sma = SMachinery()
     import uuid
+
     prname = "周一早餐"
     prid = str(uuid.uuid1())
-    

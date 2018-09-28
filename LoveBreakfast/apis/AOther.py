@@ -1,11 +1,14 @@
 # *- coding:utf8 *-
+import datetime
 import os
 import sys
 
-sys.path.append(os.path.dirname(os.getcwd()))
 from flask_restful import Resource, request
+
 from LoveBreakfast.config.response import PARAMS_MISS
-import datetime
+
+sys.path.append(os.path.dirname(os.getcwd()))
+
 
 class LBOther(Resource):
     def __init__(self):
@@ -54,7 +57,6 @@ class LBOther(Resource):
                     由于每天订单较多，我们不会对客户的每一个地址去查询是否到达，只要拍下快递，就是默认接受中通申通快递，由于中通或者申通不到造成的时间等损失，本店概不负责！
                     
                     我们同时支持顺丰快递的发送，如需发送顺丰快递，请在订单内备注，感谢您的配合。 """
-
 
         if other == "payconfig":
             print("=======================api===================")
@@ -270,8 +272,8 @@ class LBOther(Resource):
                 <trade_type><![CDATA[{11}]]></trade_type>\n\t
                 <sign>{12}</sign>\n
                 </xml>\n""".format(body["appid"], "Beauty mirror", body["device_info"], body["mch_id"], body["nonce_str"],
-                    body["notify_url"], body["openid"], body["out_trade_no"], body["time_expire"], body["time_start"],
-                    body["total_fee"], body["trade_type"], body["sign"])
+                                   body["notify_url"], body["openid"], body["out_trade_no"], body["time_expire"], body["time_start"],
+                                   body["total_fee"], body["trade_type"], body["sign"])
             print("=======================body===================")
             print(body)
             print("=======================body===================")
@@ -281,8 +283,8 @@ class LBOther(Resource):
                 import urllib2
                 url = "https://api.mch.weixin.qq.com/pay/unifiedorder"
                 headers = {'Content-Type': 'application/xml'}
-                #import xmltodict
-                #xml_body = xmltodict.unparse(data)
+                # import xmltodict
+                # xml_body = xmltodict.unparse(data)
                 print("=======================xml_body===================")
                 print(xml_body)
                 print("=======================xml_body===================")
