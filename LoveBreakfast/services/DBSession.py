@@ -1,6 +1,7 @@
 # *- coding:utf8 *-
-import sys
 import os
+import sys
+
 sys.path.append(os.path.dirname(os.getcwd()))
 from sqlalchemy.orm import sessionmaker
 from LoveBreakfast.models import model
@@ -13,7 +14,7 @@ def get_session():
         session = db_session()
         status = True
     except Exception as e:
-        print e.message
+        print(e.message)
         session = None
         status = False
     finally:

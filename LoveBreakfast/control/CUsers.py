@@ -1,6 +1,7 @@
 # *- coding:utf8 *-
-import sys
 import os
+import sys
+
 sys.path.append(os.path.dirname(os.getcwd()))
 from flask import request
 import json
@@ -9,6 +10,7 @@ from LoveBreakfast.config.response import SYSTEM_ERROR, PARAMS_MISS, TIME_ERROR
 from LoveBreakfast.common.import_status import import_status
 from LoveBreakfast.common.get_model_return_list import get_model_return_dict
 from LoveBreakfast.common.MakeToken import token_to_usid
+
 
 class CUsers():
     def __init__(self):
@@ -159,17 +161,17 @@ class CUsers():
     def update_pwd(self):
         data = request.data
         data = json.loads(data)
-        print self.title.format("data")
-        print data
-        print self.title.format("data")
+        print(self.title.format("data"))
+        print(data)
+        print(self.title.format("data"))
         if "USpasswordold" not in data or "USpasswordnew" not in data or "UStelphone" not in data:
             return SYSTEM_ERROR
 
         Utel = data["UStelphone"]
         list_utel = self.susers.get_all_user_tel()
-        print self.title.format("list_utel")
-        print list_utel
-        print self.title.format("list_utel")
+        print(self.title.format("list_utel"))
+        print(list_utel)
+        print(self.title.format("list_utel"))
         if list_utel == False:
             return SYSTEM_ERROR
 
@@ -177,9 +179,9 @@ class CUsers():
             return import_status("ERROR_MESSAGE_NONE_TELPHONE", "LOVEBREAKFAST_ERROR", "ERROR_CODE_NONE_TELPHONE")
 
         upwd = self.susers.get_upwd_by_utel(Utel)
-        print self.title.format("USpassword")
-        print upwd
-        print self.title.format("USpassword")
+        print(self.title.format("USpassword"))
+        print(upwd)
+        print(self.title.format("USpassword"))
         if upwd != data["USpasswordold"]:
             return import_status("ERROR_MESSAGE_WRONG_PASSWORD", "LOVEBREAKFAST_ERROR", "ERROR_CODE_WRONG_PASSWORD")
         users = {}
@@ -187,9 +189,9 @@ class CUsers():
         users["USpassword"] = Upwd
         Uid = self.susers.get_uid_by_utel(Utel)
         update_info = self.susers.update_users_by_uid(Uid, users)
-        print self.title.format("update_info")
-        print update_info
-        print self.title.format("update_info")
+        print(self.title.format("update_info"))
+        print(update_info)
+        print(self.title.format("update_info"))
         if not update_info:
             return SYSTEM_ERROR
 
@@ -213,7 +215,7 @@ class CUsers():
         if not users_info:
             return SYSTEM_ERROR
 
-        if users_info.get("USsex") not in["", None]:
+        if users_info.get("USsex") not in ["", None]:
             Usex = users_info.get("USsex")
             if Usex == 101:
                 users_info["USsex"] = "男"
@@ -262,7 +264,7 @@ class CUsers():
         # 根据电话号码获取时间
         time_up = self.susers.get_uptime_by_utel(Utel)
         print(self.title.format("time_up"))
-        print time_up
+        print(time_up)
         print(self.title.format("time_up"))
         if time_up:
             time_up_time = datetime.datetime.strptime(time_up.ICtime, format_for_db)
@@ -278,7 +280,6 @@ class CUsers():
 
         if not new_inforcode:
             return SYSTEM_ERROR
-        from LoveBreakfast.config.Inforcode import SignName, TemplateCode
         from LoveBreakfast.common.Inforsend import send_sms
         params = '{\"code\":\"' + code + '\",\"product\":\"etech\"}'
 
@@ -304,17 +305,17 @@ class CUsers():
     def forget_pwd(self):
         data = request.data
         data = json.loads(data)
-        print self.title.format("data")
-        print data
-        print self.title.format("data")
+        print(self.title.format("data"))
+        print(data)
+        print(self.title.format("data"))
         if "USpasswordnew" not in data or "USpasswordnewrepeat" not in data or "UStelphone" not in data or "UScode" not in data:
             return SYSTEM_ERROR
 
         Utel = data["UStelphone"]
         list_utel = self.susers.get_all_user_tel()
-        print self.title.format("list_utel")
-        print list_utel
-        print self.title.format("list_utel")
+        print(self.title.format("list_utel"))
+        print(list_utel)
+        print(self.title.format("list_utel"))
         if not list_utel:
             return SYSTEM_ERROR
 
@@ -322,9 +323,9 @@ class CUsers():
             return import_status("ERROR_MESSAGE_NONE_TELPHONE", "LOVEBREAKFAST_ERROR", "ERROR_CODE_NONE_TELPHONE")
 
         code_in_db = self.susers.get_code_by_utel(data["UStelphone"])
-        print self.title.format("code_in_db")
-        print code_in_db
-        print self.title.format("code_in_db")
+        print(self.title.format("code_in_db"))
+        print(code_in_db)
+        print(self.title.format("code_in_db"))
         if not code_in_db:
             return import_status("ERROR_MESSAGE_WRONG_TELCODE", "LOVEBREAKFAST_ERROR", "ERROR_CODE_WRONG_TELCODE")
         if code_in_db.ICcode != data["UScode"]:
@@ -338,9 +339,9 @@ class CUsers():
         users["USpassword"] = Upwd
         Uid = self.susers.get_uid_by_utel(Utel)
         update_info = self.susers.update_users_by_uid(Uid, users)
-        print self.title.format("update_info")
-        print update_info
-        print self.title.format("update_info")
+        print(self.title.format("update_info"))
+        print(update_info)
+        print(self.title.format("update_info"))
         if not update_info:
             return SYSTEM_ERROR
 

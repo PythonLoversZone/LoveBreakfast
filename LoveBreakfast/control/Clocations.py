@@ -1,6 +1,7 @@
 # *- coding:utf8 *-
-import sys
 import os
+import sys
+
 sys.path.append(os.path.dirname(os.getcwd()))
 from flask import request
 from LoveBreakfast.config.status import response_ok
@@ -13,9 +14,9 @@ class Clocations():
 
     def get_city_location(self):
         args = request.args.to_dict()
-        print "================args================"
-        print args
-        print "================args================"
+        print("================args================")
+        print(args)
+        print("================args================")
         if "lon" not in args or "lat" not in args:
             return PARAMS_MISS
 
@@ -30,7 +31,7 @@ class Clocations():
             strResult = response.read()
             response.close()
         except Exception as e:
-            print e.message
+            print(e.message)
         print("=======================strResult===================")
         print(strResult)
         print("=======================strResult===================")

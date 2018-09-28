@@ -38,5 +38,5 @@ if __name__ == "__main__":
     cancel_time = datetime.datetime(year=year_min_time, month=month_min_time,
                                     day=day_min_time, hour=22, minute=0, second=0) - \
                   datetime.timedelta(days=1)
-    print cancel_time.strftime(format_for_web_second)
-    print datetime.datetime.now() > cancel_time
+    print(cancel_time.strftime(format_for_web_second))
+    print(datetime.datetime.now() > cancel_time)

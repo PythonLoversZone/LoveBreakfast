@@ -1,19 +1,19 @@
 # *- coding:utf8 *-
-from flask import Flask
 import flask_restful
-from LoveBreakfast.apis.AUsers import LBUsers
-from LoveBreakfast.apis.AProduct import LBProduct
+from flask import Flask
+
+from LoveBreakfast.apis.AAddress import LBAddress
 from LoveBreakfast.apis.ACarts import LBCarts
 from LoveBreakfast.apis.ACategory import LBCategory
+from LoveBreakfast.apis.ACoupons import LBCoupons
+from LoveBreakfast.apis.ALocations import LBLocations
+from LoveBreakfast.apis.AOrders import LBOrders
+from LoveBreakfast.apis.AOther import LBOther
+from LoveBreakfast.apis.AProduct import LBProduct
 # from LoveBreakfast.apis.AShop import AShop
 from LoveBreakfast.apis.AReview import LBReview
-from LoveBreakfast.apis.AOrders import LBOrders
-from LoveBreakfast.apis.ALocations import LBLocations
-from LoveBreakfast.apis.ACoupons import LBCoupons
-from LoveBreakfast.apis.AAddress import LBAddress
-from LoveBreakfast.apis.AOther import LBOther
+from LoveBreakfast.apis.AUsers import LBUsers
 from LoveBreakfast.apis.AVotes import LBVotes
-
 
 bk = Flask(__name__)
 api = flask_restful.Api(bk)
@@ -38,4 +38,4 @@ if __name__ == '__main__':
     ))
 '''
 if __name__ == '__main__':
-    bk.run('0.0.0.0', 7444, debug=True)
+    bk.run('127.0.0.1', 7444, debug=True)

@@ -1,11 +1,10 @@
 # *- coding:utf8 *-
-import sys
 import os
+import sys
+
 sys.path.append(os.path.dirname(os.getcwd()))
 from flask_restful import Resource, request
 from LoveBreakfast.config.response import PARAMS_MISS
-from LoveBreakfast.common.import_status import import_status
-from LoveBreakfast.config.response import SYSTEM_ERROR
 import datetime
 
 class LBOther(Resource):
@@ -72,7 +71,7 @@ class LBOther(Resource):
             request_url = "https://api.weixin.qq.com/sns/jscode2session?appid={0}&secret={1}&js_code={2}&grant_type={3}" \
                 .format(APP_ID, APP_SECRET_KEY, code, "authorization_code")
             print("=======================request_url===================")
-            print str(request_url)
+            print(str(request_url))
             print("=======================request_url===================")
             strResult = None
             try:
@@ -81,9 +80,9 @@ class LBOther(Resource):
                 response = urllib2.urlopen(req)
                 strResult = response.read()
                 response.close()
-                print strResult
+                print(strResult)
             except Exception as e:
-                print e.message
+                print(e.message)
             if "openid" not in strResult or "session_key" not in strResult:
                 return
             import json
@@ -111,7 +110,7 @@ class LBOther(Resource):
             body["out_trade_no"] = OMid.replace("-", "")
             OMprice = self.sorders.get_omprice_by_omid(OMid)
             print("============OMprice=========")
-            print OMprice
+            print(OMprice)
             print("============OMprice=========")
             body["total_fee"] = int(OMprice * 100)
             from LoveBreakfast.config.Inforcode import NETWORK_IP
@@ -164,13 +163,13 @@ class LBOther(Resource):
                 url = "https://api.mch.weixin.qq.com/pay/unifiedorder"
                 headers = {'Content-Type': 'application/xml'}
                 print("=======================xml_body===================")
-                print xml_body
+                print(xml_body)
                 print("=======================xml_body===================")
                 req = urllib2.Request(url, headers=headers, data=xml_body)
                 url_response = urllib2.urlopen(req)
                 strResult = url_response.read()
             except Exception as e:
-                print e.message
+                print(e.message)
             print("=======================strResult===================")
             print(str(strResult))
             print("=======================strResult===================")
@@ -285,14 +284,14 @@ class LBOther(Resource):
                 #import xmltodict
                 #xml_body = xmltodict.unparse(data)
                 print("=======================xml_body===================")
-                print xml_body
+                print(xml_body)
                 print("=======================xml_body===================")
                 req = urllib2.Request(url, headers=headers, data=xml_body)
                 url_response = urllib2.urlopen(req)
                 strResult = url_response.read()
-                print 1
+                print(1)
             except Exception as e:
-                print e.message
+                print(e.message)
             print("=======================strResult===================")
             print(str(strResult))
             print("=======================strResult===================")
@@ -370,9 +369,9 @@ class LBOther(Resource):
             print("接口名称是{0}，接口方法是get".format("getdata"))
             print("=======================api===================")
             data = request.data
-            print "=====================data=================="
+            print("=====================data==================")
             print(data)
-            print "=====================data=================="
+            print("=====================data==================")
             import xmltodict
             data = xmltodict.parse(data)
             import json
