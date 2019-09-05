@@ -1,0 +1,5 @@
+# *- coding:utf8 *-
+OK = 200
+GROUPMEAL_ERROR = 405
+SYSTEM_ERROR = 404
+NONE_ERROR = 500
