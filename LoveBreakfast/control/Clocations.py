@@ -1,25 +1,28 @@
 # *- coding:utf8 *-
-import sys
 import os
-sys.path.append(os.path.dirname(os.getcwd()))
+import sys
+
 from flask import request
-from LoveBreakfast.config.status import response_ok
+
 from LoveBreakfast.config.response import PARAMS_MISS, SYSTEM_ERROR
+from LoveBreakfast.config.status import response_ok
+
+sys.path.append(os.path.dirname(os.getcwd()))
 
 
-class Clocations():
+class Clocations:
     def __init__(self):
         pass
 
     def get_city_location(self):
         args = request.args.to_dict()
-        print "================args================"
-        print args
-        print "================args================"
+        print("================args================")
+        print(args)
+        print("================args================")
         if "lon" not in args or "lat" not in args:
             return PARAMS_MISS
 
-        url = "http://api.map.baidu.com/geocoder/v2/?callback={0}&location={1},{2}&output={3}&pois={4}&ak={5}"\
+        url = "http://api.map.baidu.com/geocoder/v2/?callback={0}&location={1},{2}&output={3}&pois={4}&ak={5}" \
             .format("renderReverse", args["lat"], args["lon"], "xml", 0, "1bdd475a06ffdb9a4f3ee021da7ae847")
 
         strResult = None
@@ -30,7 +33,7 @@ class Clocations():
             strResult = response.read()
             response.close()
         except Exception as e:
-            print e.message
+            print(e.message)
         print("=======================strResult===================")
         print(strResult)
         print("=======================strResult===================")

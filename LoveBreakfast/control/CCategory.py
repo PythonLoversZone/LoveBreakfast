@@ -1,14 +1,18 @@
 # *- coding:utf8 *-
-import sys
 import os
-sys.path.append(os.path.dirname(os.getcwd()))
+import sys
+
 from flask import request
-from LoveBreakfast.services.SProduct import SProduct
+
 from LoveBreakfast.common.get_str import get_str
 from LoveBreakfast.common.import_status import import_status
 from LoveBreakfast.services.SCategory import SCategory
+from LoveBreakfast.services.SProduct import SProduct
 
-class CCategory():
+sys.path.append(os.path.dirname(os.getcwd()))
+
+
+class CCategory:
     def __init__(self):
         self.service_product = SProduct()
         self.service_category = SCategory()
@@ -36,10 +40,13 @@ class CCategory():
 
         sid_to_str = get_str(args, "Sid")
         # 判断是否存在此sid
-        print type(sid_to_str)
+        print(type(sid_to_str))
+
         all_shop_id = self.service_shop.get_all_sid()
-        print type(all_shop_id)
-        print all_shop_id
+        print(type(all_shop_id))
+
+        print(all_shop_id)
+
         if str(args["Sid"]) not in all_shop_id:
             message, status, statuscode = import_status("NO_THIS_Shop", "response_error", "NO_THIS_Shop")
             return {

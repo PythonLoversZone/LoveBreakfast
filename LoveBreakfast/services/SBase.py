@@ -1,8 +1,9 @@
 # *- coding:utf8 *-
-import sys
 import os
+import sys
+
 sys.path.append(os.path.dirname(os.getcwd()))
-import DBSession
+from LoveBreakfast.services import DBSession
 from LoveBreakfast.common.lovebreakfast_error import dberror
 import LoveBreakfast.models.model as models
 

@@ -1,10 +1,14 @@
 # *- coding:utf8 *-
-import sys
 import os
-sys.path.append(os.path.dirname(os.getcwd()))
+import sys
+
 from flask_restful import Resource
-from LoveBreakfast.control.CAddress import CAddress
+
 from LoveBreakfast.config.response import APIS_WRONG
+from LoveBreakfast.control.CAddress import CAddress
+
+sys.path.append(os.path.dirname(os.getcwd()))
+
 
 class LBAddress(Resource):
     def __init__(self):

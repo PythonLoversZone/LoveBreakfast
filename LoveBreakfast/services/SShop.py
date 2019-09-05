@@ -1,15 +1,17 @@
 # *- coding:utf8 *-
 # 兼容linux系统
-import sys
 import os
-reload(sys)
+import sys
+
+# reload(sys)
 sys.setdefaultencoding('utf-8')
 
-sys.path.append(os.path.dirname(os.getcwd()))  # 增加系统路径
 # 引用项目类
 import LoveBreakfast.models.model as models
-import DBSession
+from LoveBreakfast.services import DBSession
 from LoveBreakfast.common.TransformToList import trans_params
+
+sys.path.append(os.path.dirname(os.getcwd()))  # 增加系统路径
 
 
 # 操作user表的相关方法
@@ -22,7 +24,7 @@ class SShop():
         self.session, self.status = DBSession.get_session()
         pass
 
-    #向数据库中插入数据，用于初始化数据
+    # 向数据库中插入数据，用于初始化数据
     def add_shop(self, shop):
         try:
             self.session.add(shop)
@@ -38,9 +40,10 @@ class SShop():
         shop_list = []
         try:
             shop_list = self.session.query(models.Shops.Sname, models.Shops.Simage, models.Shops.Sreview,
-                                             models.Shops.Sdetail).all()
+                                           models.Shops.Sdetail).all()
         except Exception as e:
-            print e.message
+            print
+            e.message
         finally:
             self.session.close()
         return shop_list
@@ -50,9 +53,9 @@ class SShop():
         pro_abo = None
         try:
             pro_abo = self.session.query(models.Shops.Sname, models.Shops.Simage, models.Shops.Stel,
-                                             models.Shops.Sdetail).filter_by(Sid=sid).first()
+                                         models.Shops.Sdetail).filter_by(Sid=sid).first()
         except Exception as e:
-            print e.message
+            print(e.message)
         finally:
             self.session.close()
         return pro_abo
@@ -80,6 +83,7 @@ class SShop():
             self.session.close()
         return proid_list
 
+
 if __name__ == "__main__":
     shop = SShop()
-    print shop.get_homepage_products()
+    print(shop.get_homepage_products())

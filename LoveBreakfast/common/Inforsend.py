@@ -1,12 +1,13 @@
 # -*- coding: utf-8 -*-
 import sys
-from aliyunsdkdysmsapi.request.v20170525 import SendSmsRequest
+
 from aliyunsdkcore.client import AcsClient
 from aliyunsdkcore.profile import region_provider
+from aliyunsdkdysmsapi.request.v20170525 import SendSmsRequest
 from config.Inforcode import ACCESS_KEY_ID, ACCESS_KEY_SECRET
 
 try:
-    reload(sys)
+    # reload(sys)
     sys.setdefaultencoding('utf8')
 except NameError:
     pass
@@ -20,6 +21,7 @@ DOMAIN = "dysmsapi.aliyuncs.com"
 
 acs_client = AcsClient(ACCESS_KEY_ID, ACCESS_KEY_SECRET, REGION)
 region_provider.add_endpoint(PRODUCT_NAME, REGION, DOMAIN)
+
 
 def send_sms(business_id, phone_numbers, sign_name, template_code, template_param=None):
     smsRequest = SendSmsRequest.SendSmsRequest()

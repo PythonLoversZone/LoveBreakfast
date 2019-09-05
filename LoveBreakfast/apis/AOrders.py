@@ -1,20 +1,23 @@
 # *- coding:utf8 *-
-import sys
 import os
-sys.path.append(os.path.dirname(os.getcwd()))
+import sys
+
 from flask_restful import Resource
+
 from LoveBreakfast.config.Logs import PRINT_API_NAME
-from LoveBreakfast.control.COrders import COrders
 from LoveBreakfast.config.response import APIS_WRONG
+
+sys.path.append(os.path.dirname(os.getcwd()))
+
 
 class LBOrders(Resource):
     def __init__(self):
         pass
 
-    def get(self, orders):
+    @staticmethod
+    def get(orders):
         print(PRINT_API_NAME.format(orders))
 
-        control_order = COrders()
         apis = {
             "get_order_list": "control_order.get_order_list()",
             "get_order_abo": "control_order.get_order_abo()",
@@ -26,10 +29,10 @@ class LBOrders(Resource):
 
         return eval(apis[orders])
 
-    def post(self, orders):
+    @staticmethod
+    def post(orders):
         print(PRINT_API_NAME.format(orders))
 
-        control_order = COrders()
         apis = {
             "make_main_order": "control_order.make_main_order()",
             "add_order_items": "control_order.add_order_items()",

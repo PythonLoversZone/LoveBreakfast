@@ -1,11 +1,14 @@
 # *- coding:utf8 *-
-import sys
 import os
-sys.path.append(os.path.dirname(os.getcwd()))
+import sys
+
 from flask_restful import Resource
+
 from LoveBreakfast.config.Logs import PRINT_API_NAME
-from LoveBreakfast.control.CCarts import CCarts
 from LoveBreakfast.config.response import APIS_WRONG
+from LoveBreakfast.control.CCarts import CCarts
+
+sys.path.append(os.path.dirname(os.getcwd()))
 
 
 class LBCarts(Resource):
@@ -13,7 +16,8 @@ class LBCarts(Resource):
         self.ccart = CCarts()
         self.title = "=========={0}=========="
 
-    def post(self, cart):
+    @staticmethod
+    def post(cart):
         print()
         print(PRINT_API_NAME.format(cart))
 
@@ -28,7 +32,8 @@ class LBCarts(Resource):
 
         return APIS_WRONG
 
-    def get(self, cart):
+    @staticmethod
+    def get(cart):
         print(PRINT_API_NAME.format(cart))
 
         apis = {

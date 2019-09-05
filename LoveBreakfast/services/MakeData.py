@@ -1,17 +1,19 @@
 # *- coding:utf8 *-
-import sys
 import os
+import sys
+
 args = sys.argv
 path = os.getcwd()
 if len(args) > 1:
     path = args[1]  # /opt/LoveBreakfast
 print(path)
-sys.path.append(os.path.dirname(path))  # 增加系统路径
 from LoveBreakfast.common.TransformToList import add_model
 import uuid
 
+sys.path.append(os.path.dirname(path))  # 增加系统路径
 
-class MakeData():
+
+class MakeData:
     def __init__(self):
         from LoveBreakfast.services.SUsers import SUsers
         self.users = SUsers()
@@ -35,7 +37,7 @@ class MakeData():
                           "USinvatecode": "ETECH007"
                       })
         except Exception as e:
-            print e.message
+            print(e.message)
 
     def setCOid(self):
         list_coid = []
@@ -57,7 +59,7 @@ class MakeData():
                               "COend": None
                           })
         except Exception as e:
-            print e.message
+            print(e.message)
 
     def add_cardpackage(self, coid, uid):
         try:
@@ -89,7 +91,7 @@ class MakeData():
                           "CAend": "20180419000000"
                       })
         except Exception as e:
-            print e.message
+            print(e.message)
 
     def set_pid(self):
         pid_list = []
@@ -158,7 +160,7 @@ class MakeData():
                           "PRscore": 1.6
                       })
         except Exception as e:
-            print e.message
+            print(e.message)
 
     def add_machinery(self, pridlist, aaidlist):
         for aaid in aaidlist:

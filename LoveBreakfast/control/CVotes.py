@@ -1,18 +1,21 @@
 # *- coding:utf8 *-
-import sys
-import os
-sys.path.append(os.path.dirname(os.getcwd()))
-from flask import request
 import json
+import os
+import sys
 import uuid
-from LoveBreakfast.config.response import SYSTEM_ERROR, PARAMS_MISS
+
+from flask import request
+
+from LoveBreakfast.common.get_model_return_list import get_model_return_dict as todict, get_model_return_list as tolist
 from LoveBreakfast.common.import_status import import_status
 # from LoveBreakfast.common.TransformToList import add_model
 from LoveBreakfast.common.timeformate import get_db_time_str, get_web_time_str, format_forweb_no_HMS
-from LoveBreakfast.common.get_model_return_list import get_model_return_dict as todict, get_model_return_list as tolist
+from LoveBreakfast.config.response import SYSTEM_ERROR, PARAMS_MISS
+
+sys.path.append(os.path.dirname(os.getcwd()))
 
 
-class CVotes():
+class CVotes:
     conversion_VOunit = {1300: "站"}
     conversion_VOtype = {1001: "单选题", 1002: '多选题', 1003: '填空题'}
     conversion_VOunit_reverse = {k: v for v, k in conversion_VOunit.items()}

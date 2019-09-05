@@ -1,19 +1,22 @@
 # *- coding:utf8 *-
-import sys
-import os
-sys.path.append(os.path.dirname(os.getcwd()))
-from flask import request
-import json
-from LoveBreakfast.config.response import SYSTEM_ERROR, PARAMS_MISS, TIME_ERROR
 import datetime
+import json
+import os
+import sys
+
+from flask import request
+
 from LoveBreakfast.common import timeformate
-from LoveBreakfast.common.import_status import import_status
+from LoveBreakfast.common.MakeToken import token_to_usid
 from LoveBreakfast.common.get_model_return_list import get_model_return_list, get_model_return_dict
 from LoveBreakfast.common.get_str import get_str
-from LoveBreakfast.common.MakeToken import token_to_usid
+from LoveBreakfast.common.import_status import import_status
+from LoveBreakfast.config.response import SYSTEM_ERROR, PARAMS_MISS, TIME_ERROR
+
+sys.path.append(os.path.dirname(os.getcwd()))
 
 
-class COrders():
+class COrders:
 
     def __init__(self):
         self.title = "=========={0}=========="
@@ -298,13 +301,13 @@ class COrders():
         return response_of_get_all
 
     def get_status_name_by_status(self, status):
-        return OMstatus_list[status/7]
+        return OMstatus_list[status / 7]
 
     def get_status_by_status_name(self, status_name):
         i = 0
         while i < 7:
             if status_name == OMstatus_list[i]:
-                return i*7
+                return i * 7
             i = i + 1
 
         return -99
@@ -351,7 +354,7 @@ class COrders():
                 product = get_model_return_dict(self.sproduct.get_pro_info_by_pid(product.get("PRid")))
                 # if product.get("PBunit") != OMcointype:
                 #     TODO 增加换算过程
-                    # pass
+                # pass
                 OMprice += (product.get("PRprice") * prnumber)
                 order_list.append(product)
 

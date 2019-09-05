@@ -1,20 +1,22 @@
 # *- coding:utf8 *-
-import sys
 import os
+import sys
 
-sys.path.append(os.path.dirname(os.getcwd()))
 from flask import request
-from LoveBreakfast.services.SProduct import SProduct
+
+from LoveBreakfast.common.get_model_return_list import get_model_return_list, get_model_return_dict
 from LoveBreakfast.common.get_str import get_str
-from LoveBreakfast.config.response import PARAMS_MISS, SYSTEM_ERROR
 from LoveBreakfast.common.import_status import import_status
+from LoveBreakfast.config.response import PARAMS_MISS, SYSTEM_ERROR
+from LoveBreakfast.services.SAddress import SAddress
 from LoveBreakfast.services.SCategory import SCategory
 from LoveBreakfast.services.SMachinery import SMachinery
-from LoveBreakfast.services.SAddress import SAddress
-from LoveBreakfast.common.get_model_return_list import get_model_return_list, get_model_return_dict
+from LoveBreakfast.services.SProduct import SProduct
+
+sys.path.append(os.path.dirname(os.getcwd()))
 
 
-class CProduct():
+class CProduct:
     def __init__(self):
         try:
             self.title = "========{0}========="

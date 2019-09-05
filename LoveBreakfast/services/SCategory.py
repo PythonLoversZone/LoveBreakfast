@@ -1,12 +1,15 @@
 # *- coding:utf8 *-
 # 兼容linux系统
-import sys
 import os
-sys.path.append(os.path.dirname(os.getcwd()))
-from LoveBreakfast.models import model
-import DBSession
+import sys
 
-class SCategory():
+from LoveBreakfast.models import model
+from LoveBreakfast.services import DBSession
+
+sys.path.append(os.path.dirname(os.getcwd()))
+
+
+class SCategory:
     def __init__(self):
         """
         self.session 数据库连接会话
@@ -20,7 +23,7 @@ class SCategory():
         try:
             category_list = self.session.query(model.Category.Cid, model.Category.Cname).all()
         except Exception as e:
-            print e.message
+            print(e.message)
         finally:
             self.session.close()
         return category_list
@@ -31,7 +34,7 @@ class SCategory():
         try:
             cid_list = self.session.query(model.Products.Pcategoryid, model.Products.Pcatgoryname).filter_by(Sid=sid).all()
         except Exception as e:
-            print e.message
+            print(e.message)
         finally:
             self.session.close()
         return cid_list

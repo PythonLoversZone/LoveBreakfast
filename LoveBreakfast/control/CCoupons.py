@@ -1,16 +1,20 @@
 # *- coding:utf8 *-
-import sys
-import os
-sys.path.append(os.path.dirname(os.getcwd()))
-from flask import request
-import json
 import datetime
+import json
+import os
+import sys
 import uuid
+
+from flask import request
+
+from LoveBreakfast.common.MakeToken import token_to_usid
+from LoveBreakfast.common.import_status import import_status
 from LoveBreakfast.common.lovebreakfast_error import dberror
 from LoveBreakfast.common.timeformate import get_db_time_str, get_web_time_str, format_forweb_no_HMS
 from LoveBreakfast.config.response import SYSTEM_ERROR, PARAMS_MISS
-from LoveBreakfast.common.import_status import import_status
-from LoveBreakfast.common.MakeToken import token_to_usid
+
+sys.path.append(os.path.dirname(os.getcwd()))
+
 
 class CCoupons():
     def __init__(self):

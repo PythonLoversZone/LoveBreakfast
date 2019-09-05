@@ -1,19 +1,22 @@
 # *- coding:utf8 *-
 # *- coding:utf8 *-
 # 兼容linux系统
-import sys
 import os
-sys.path.append(os.path.dirname(os.getcwd())) # 增加系统路径
-#引用python类
+import sys
+
+# 引用python类
 from flask import request
-import json
-#引用项目类
-from LoveBreakfast.services.SProduct import SProduct
+
 from LoveBreakfast.common.get_str import get_str
 from LoveBreakfast.common.import_status import import_status
+# 引用项目类
+from LoveBreakfast.services.SProduct import SProduct
 from LoveBreakfast.services.SShop import SShop
 
-class CShop():
+sys.path.append(os.path.dirname(os.getcwd()))  # 增加系统路径
+
+
+class CShop:
     def __init__(self):
         self.service_product = SProduct()
         self.service_shop = SShop()
@@ -23,7 +26,7 @@ class CShop():
         # 返回商品详情
         list = []
         shopsdetail_of_service = self.service_shop.get_all_shops()
-        for i in range(shopsdetail_of_service.__len__()/10):
+        for i in range(shopsdetail_of_service.__len__() / 10):
             shopdetail_of_controller = {}
             dic2 = {}
             shopdetail_of_controller["Sname"] = shopsdetail_of_service[i].Sname
@@ -52,10 +55,10 @@ class CShop():
 
         sid_to_str = get_str(args, "Sid")
         # 判断是否存在此pid
-        print type(sid_to_str)
+        print(type(sid_to_str))
         all_shop_id = self.service_shop.get_all_sid()
-        print type(all_shop_id)
-        print all_shop_id
+        print(type(all_shop_id))
+        print(all_shop_id)
         if str(args["Sid"]) not in all_shop_id:
             message, status, statuscode = import_status("NO_THIS_Shop", "response_error", "NO_THIS_Shop")
             return {
@@ -90,10 +93,11 @@ class CShop():
 
         sid_to_str = get_str(args, "Sid")
         # 判断是否存在此sid
-        print type(sid_to_str)
+        print(type(sid_to_str))
         all_shop_id = self.service_shop.get_all_sid()
-        print type(all_shop_id)
-        print all_shop_id
+        print(type(all_shop_id))
+        print(all_shop_id)
+
         if str(args["Sid"]) not in all_shop_id:
             message, status, statuscode = import_status("NO_THIS_Shop", "response_error", "NO_THIS_Shop")
             return {

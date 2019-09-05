@@ -1,20 +1,23 @@
 # *- coding:utf8 *-
 # 兼容linux系统
-import sys
 import os
+import sys
+
 sys.path.append(os.path.dirname(os.getcwd()))  # 增加系统路径
-#from services.SCoupons import SCoupons
-import model
+# from services.SCoupons import SCoupons
+from LoveBreakfast.models import model
+from LoveBreakfast.services import SCoupons
 import pymysql
+
 change_index = 10  # 循环中改变type的点
 info_count = 22  # 需要插入的数据库条数
 
 
 class MakeData():
     def __init__(self):
-        #self.shop = SShop()
+        # self.shop = SShop()
         # self.product = SProduct()
-        self.cou = SCoupons()
+        self.cou = SCoupons
 
     def make_id(self):
         import uuid
@@ -58,10 +61,11 @@ class databse_deal():
     def create_database(self):
         sql = "create database if not exists {0} DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci ;".format(
             model.cfg.database)
-        print sql
+        print
+        sql
         try:
             self.cursor.execute(sql)
-        except Exception, e:
+        except Exception as e:
             print(e)
         finally:
             self.conn_close()
@@ -69,10 +73,11 @@ class databse_deal():
     def drop_database(self):
         sql = "drop database if exists {0} ;".format(
             model.cfg.database)
-        print sql
+        print
+        sql
         try:
             self.cursor.execute(sql)
-        except Exception, e:
+        except Exception as e:
             print(e)
 
         finally:
@@ -90,6 +95,7 @@ def create():
 def drop():
     databse_deal().drop_database()
 
+
 if __name__ == "__main__":
     print("start")
     '''
@@ -97,15 +103,15 @@ if __name__ == "__main__":
        如果需要清除数据库，输入drop
        如果需要创建数据库 输入任意不包含drop的字符
        '''
-    action = raw_input("create database?")
+    action = input("create database?")
     if "drop" in action:
         drop()
 
     else:
         create()
-        #data = MakeData()
-        #tshop_ids = data.make_id()
+        # data = MakeData()
+        # tshop_ids = data.make_id()
         # data.add_shops(tshop_ids)
         # data.add_products(tshop_ids)
-        #data.add_conpons(tshop_ids)
+        # data.add_conpons(tshop_ids)
         print("over")
